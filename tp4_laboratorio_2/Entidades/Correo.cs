@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Correo
+    public class Correo : IMostrar<List<Paquete>> // solo falta la sobrecarga del operador +
     {
         #region Campos
 
@@ -19,7 +19,8 @@ namespace Entidades
         #region Propiedades
 
         /// <summary>
-        /// 
+        /// [get] devuelve la lista de paquetes
+        /// [set] settea la lista de paquetes
         /// </summary>
         public List<Paquete> Paquetes
         {
@@ -29,7 +30,7 @@ namespace Entidades
             }
             set
             {
-                // a completar
+                this.paquetes = value;
             }
         }
 
@@ -38,11 +39,13 @@ namespace Entidades
         #region Constructores
 
         /// <summary>
-        /// 
+        /// Constructor sin parámetros.
+        /// Inicializa las listas.
         /// </summary>
         public Correo()
         {
-
+            this.mockPaquetes = new List<Thread>();
+            this.paquetes = new List<Paquete>();
         }
 
         #endregion
@@ -50,22 +53,37 @@ namespace Entidades
         #region Métodos
 
         /// <summary>
-        /// 
+        /// Cerrará todos los hilos activos.
         /// </summary>
         public void FinEntregas()
         {
-            // a completar
+            foreach (Thread t in this.mockPaquetes)
+            {
+                if (t.IsAlive)
+                {
+                    t.Abort();
+                }
+            }
         }
 
         /// <summary>
-        /// 
+        /// utilizará string.Format con el siguiente formato 
+        /// "{0} para {1} ({2})", p.TrackingID, p.DireccionEntrega, p.Estado.ToString() 
+        /// para retornar los datos de todos los paquetes de su lista.
         /// </summary>
         /// <param name="elementos"></param>
         /// <returns></returns>
         public string MostrarDatos(IMostrar <List<Paquete>> elementos)
         {
-            // a completar
-            return "";
+            string retorno = "";
+            Correo c = (Correo)elementos;
+
+            foreach (Paquete p in c.Paquetes)
+            {
+                retorno += string.Format("{0} para {1} ({2})", p.TrackingID, p.DireccionEntrega, p.Estado.ToString());
+            }
+
+            return retorno;
         }
 
         #endregion
@@ -73,7 +91,13 @@ namespace Entidades
         #region Sobrecarga de operadores
 
         /// <summary>
-        /// 
+        /// Esta sobrecarga realiza 4 acciones:
+        /// a. Controlar si el paquete ya está en la lista. 
+        /// En el caso de que esté, se lanzará la excepción TrackingIdRepetidoException.
+        /// b. De no estar repetido, agregar el paquete a la lista de paquetes.
+        /// c. Crear un hilo para el método MockCicloDeVida del paquete, 
+        /// y agregar dicho hilo a mockPaquetes.
+        /// d. Ejecutar el hilo.
         /// </summary>
         /// <param name="c"></param>
         /// <param name="p"></param>

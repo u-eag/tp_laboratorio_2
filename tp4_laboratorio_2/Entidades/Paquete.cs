@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Paquete
+    public class Paquete : IMostrar<Paquete> // solo falta el método MockCicloDeVida
     {
         #region Campos
 
@@ -19,7 +19,8 @@ namespace Entidades
         #region Propiedades
 
         /// <summary>
-        /// 
+        /// [get] devuelve la dirección de entrega
+        /// [set] settea la dirección de entrega
         /// </summary>
         public string DireccionEntrega
         {
@@ -29,12 +30,14 @@ namespace Entidades
             }
             set
             {
-                // a completar
+                this.direccionEntrega = value;
             }
         }
 
         /// <summary>
-        /// 
+        /// [get] devuelve el estado de la entrega
+        /// [set] settea el estado de la entrega:
+        /// Ingresado, EnViaje, Entregado
         /// </summary>
         public EEstado Estado
         {
@@ -44,12 +47,13 @@ namespace Entidades
             }
             set
             {
-                // a completar
+                this.estado = value;
             }
         }
 
         /// <summary>
-        /// 
+        /// [get] devuelve el id de rastreo
+        /// [set] settea el id de rastreo
         /// </summary>
         public string TrackingID
         {
@@ -59,7 +63,7 @@ namespace Entidades
             }
             set
             {
-                // a completar
+                this.trackingID = value;
             }
 
         }
@@ -69,13 +73,15 @@ namespace Entidades
         #region Constructores
 
         /// <summary>
-        /// 
+        /// Constructor que recibe dos parámetros.
         /// </summary>
         /// <param name="direccionEntrega"></param>
         /// <param name="trackingID"></param>
         public Paquete(string direccionEntrega, string trackingID)
         {
-            // a completar
+            this.direccionEntrega = direccionEntrega;
+            this.trackingID = trackingID;
+            // this.estado = EEstado.Ingresado; // El estado del paquete se settea en [Ingresado] por default ??
         }
 
         #endregion
@@ -83,7 +89,12 @@ namespace Entidades
         #region Métodos
 
         /// <summary>
-        /// 
+        /// Hará que el paquete cambie de estado de la siguiente forma:
+        /// a. Colocar una demora de 4 segundos.
+        /// b. Pasar al siguiente estado.
+        /// c. Informar el estado a través de InformarEstado. EventArgs no tendrá ningún dato extra.
+        /// d. Repetir las acciones desde el punto A hasta que el estado sea Entregado.
+        /// e. Finalmente guardar los datos del paquete en la base de datos
         /// </summary>
         public void MockCicloDeVida()
         {
@@ -91,23 +102,31 @@ namespace Entidades
         }
 
         /// <summary>
-        /// 
+        /// Utilizará string.Format con el siguiente formato 
+        /// "{0} para {1}", p.trackingID, p.direccionEntrega 
+        /// para compilar la información del paquete.
         /// </summary>
         /// <param name="elemento"></param>
         /// <returns></returns>
         public string MostrarDatos(IMostrar<Paquete> elemento)
         {
-            // a completar
-            return "";
+            Paquete p = (Paquete)elemento;
+
+            return string.Format("{0} para {1}", p.trackingID, p.direccionEntrega);
         }
 
         /// <summary>
-        /// 
+        /// La sobrecarga del método ToString retornará la información del paquete.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return "";
+            StringBuilder retorno = new StringBuilder();
+
+            retorno.Append(MostrarDatos(this)); // trackingID && direccionEntrega
+            retorno.AppendFormat("Estado: {0}", this.estado);
+
+            return retorno.ToString();
         }
 
         #endregion
@@ -115,18 +134,26 @@ namespace Entidades
         #region Sobrecarga de Operadores
 
         /// <summary>
-        /// 
+        /// Dos paquetes serán iguales siempre y cuando su Tracking ID sea el mismo.
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
         /// <returns></returns>
         public static bool operator ==(Paquete p1, Paquete p2)
         {
-            return true; // a completar
+            bool retorno = false;
+
+            if (p1 != null && p2 != null
+                && p1.TrackingID == p2.TrackingID)
+            {
+                retorno = true;
+            }
+
+            return retorno;
         }
 
         /// <summary>
-        /// 
+        /// Dos paquetes serán distintos siempre y cuando su Tracking ID sea diferente.
         /// </summary>
         /// <param name="p1"></param>
         /// <param name="p2"></param>
@@ -146,7 +173,7 @@ namespace Entidades
 
         #region Tipos Anidados
 
-        public delegate void DelegadoEstado(); // completar los parámetros
+        public delegate void DelegadoEstado(object sender, EventArgs args); // chequear los parámetros
 
         public enum EEstado
         {
