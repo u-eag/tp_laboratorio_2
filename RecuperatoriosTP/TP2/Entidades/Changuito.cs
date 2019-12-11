@@ -93,7 +93,12 @@ namespace Entidades_2018
                     return c;
             }
 
-            c.productos.Add(p);
+            if(c.productos.Count < 6)
+            {
+                c.productos.Add(p);
+            }
+            
+
             return c;
         }
         /// <summary>
