@@ -9,38 +9,37 @@ namespace Entidades_2018
     /// <summary>
     /// No podrá tener clases heredadas.
     /// </summary>
-    public class Changuito
+    public sealed class Changuito
     {
-        List<Producto> productos;
-        int espacioDisponible;
-        public enum ETipo
-        {
-            Dulce, Leche, Snacks, Todos
-        }
+        #region Campos
 
-        #region "Constructores"
+        private int espacioDisponible;
+        private List<Producto> productos;
+
+        #endregion
+
+        #region Constructores
+
+        /// <summary>
+        /// Constructor sin parámetros que inicializa la lista de productos
+        /// </summary>
         private Changuito()
         {
             this.productos = new List<Producto>();
         }
-        public Changuito(int espacioDisponible)
+
+        /// <summary>
+        /// Constructor que recibe un parámetro
+        /// </summary>
+        /// <param name="espacioDisponible"></param>
+        public Changuito(int espacioDisponible) : this()
         {
             this.espacioDisponible = espacioDisponible;
         }
+
         #endregion
 
-        #region "Sobrecargas"
-        /// <summary>
-        /// Muestro el Changuito y TODOS los Productos
-        /// </summary>
-        /// <returns></returns>
-        public string ToString()
-        {
-            return Changuito.Mostrar(this, ETipo.Todos);
-        }
-        #endregion
-
-        #region "Métodos"
+        #region Métodos
 
         /// <summary>
         /// Expone los datos del elemento y su lista (incluidas sus herencias)
@@ -74,8 +73,9 @@ namespace Entidades_2018
                 }
             }
 
-            return sb;
+            return sb.ToString();
         }
+
         #endregion
 
         #region "Operadores"
@@ -87,7 +87,7 @@ namespace Entidades_2018
         /// <returns></returns>
         public static Changuito operator +(Changuito c, Producto p)
         {
-            foreach (Producto v in c)
+            foreach (Producto v in c.productos)
             {
                 if (v == p)
                     return c;
@@ -104,16 +104,37 @@ namespace Entidades_2018
         /// <returns></returns>
         public static Changuito operator -(Changuito c, Producto p)
         {
-            foreach (Producto v in c)
+            foreach (Producto v in c.productos)
             {
                 if (v == p)
                 {
+                    c.productos.Remove(v);
                     break;
                 }
             }
 
             return c;
         }
+        #endregion
+
+        #region "Sobrecargas"
+        /// <summary>
+        /// Muestro el Changuito y TODOS los Productos
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this.Mostrar(this, ETipo.Todos);
+        }
+        #endregion
+
+        #region Tipos Anidados
+
+        public enum ETipo
+        {
+            Dulce, Leche, Snacks, Todos
+        }
+
         #endregion
     }
 }

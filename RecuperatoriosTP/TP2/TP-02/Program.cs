@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entidades_2018;
 
 namespace TP_02_2018
 {
@@ -46,7 +47,7 @@ namespace TP_02_2018
 
             // Quito un item y muestro
             changoDeCompras -= c1;
-            changoDeCompras -= new Dulce(Producto.EMarca.Ilolay, "ASD913", ConsoleColor.Red)
+            changoDeCompras -= new Dulce(Producto.EMarca.Ilolay, "ASD913", ConsoleColor.Red);
 
             Console.WriteLine(changoDeCompras.ToString());
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
