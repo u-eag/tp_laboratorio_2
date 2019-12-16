@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Entidades
@@ -98,7 +99,21 @@ namespace Entidades
         /// </summary>
         public void MockCicloDeVida()
         {
-            // a completar
+            while (this.estado != EEstado.Entregado)
+            {
+                Thread.Sleep(4000);
+                this.estado++;
+                this.InformaEstado(this, new EventArgs());
+            }
+
+            try
+            {
+                PaqueteDAO.Insertar(this);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
