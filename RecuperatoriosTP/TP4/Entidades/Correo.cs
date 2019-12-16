@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Correo : IMostrar<List<Paquete>> // solo falta la sobrecarga del operador +
+    public class Correo : IMostrar<List<Paquete>> 
     {
         #region Campos
 
@@ -104,7 +104,19 @@ namespace Entidades
         /// <returns></returns>
         public static Correo operator +(Correo c, Paquete p)
         {
-            // a completar
+            foreach (Paquete paquete in c.Paquetes)
+            {
+                if(paquete == p)
+                {
+                    throw new TrackingIdRepetidoException("Paquete repetido");
+                }
+            }
+
+            // si llega hasta acá, es porque el paquete no está repetido:
+            c.paquetes.Add(p); // agrego el paquete a la lista de paquetes
+            Thread thread = new Thread(p.MockCicloDeVida); // creo un hilo para el método MockCicloDeVida del paquete
+            c.mockPaquetes.Add(thread); // agrego el hilo a mockPaquetes
+            thread.Start(); // ejecuto el hilo
 
             return c;
         }
