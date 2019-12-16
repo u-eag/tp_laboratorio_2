@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Entidades
 {
@@ -21,12 +22,20 @@ namespace Entidades
         /// <returns></returns>
         public static bool Guardar(this string texto, string archivo)
         {
-            if(!string.IsNullOrEmpty(archivo) && !string.IsNullOrEmpty(texto))
-            {
+            bool retorno = false;
 
+            if (!string.IsNullOrEmpty(archivo) && !string.IsNullOrEmpty(texto))
+            {
+                string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                //using maneja el archivo, encargándose de cerrarlo  al finalizar
+                using (StreamWriter sw = new StreamWriter(folderPath + "\\" + archivo, File.Exists(archivo)))
+                {
+                    sw.WriteLine(texto); // si el archivo existe, guardo el texto pasado por parámetro
+                    retorno = true;
+                }
             }
 
-            return true;
+            return retorno;
         }
 
         #endregion
