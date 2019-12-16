@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Paquete : IMostrar<Paquete> // solo falta el método MockCicloDeVida
+    public class Paquete : IMostrar<Paquete> 
     {
         #region Campos
 
