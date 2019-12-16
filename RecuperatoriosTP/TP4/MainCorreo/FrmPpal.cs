@@ -35,15 +35,39 @@ namespace MainCorreo
         #region Métodos
 
         /// <summary>
-        /// 
+        /// Limpiará los 3 ListBox y
+        /// luego recorrerá la lista de paquetes, 
+        /// agregando cada uno de ellos en el listado que corresponda.
         /// </summary>
         private void ActualizarEstados()
         {
+            lstEstadoEnViaje.Items.Clear();
+            lstEstadoEntregado.Items.Clear();
+            lstEstadoIngresado.Items.Clear();
 
+            foreach (Paquete p in correo.Paquetes)
+            {
+                switch (p.Estado)
+                {
+                    case Paquete.EEstado.Ingresado:
+                        lstEstadoIngresado.Items.Add(p);
+                        break;
+
+                    case Paquete.EEstado.EnViaje:
+                        lstEstadoEnViaje.Items.Add(p);
+                        break;
+
+                    case Paquete.EEstado.Entregado:
+                        lstEstadoEntregado.Items.Add(p);
+                        break;
+                }
+            }
         }
 
         /// <summary>
-        /// 
+        /// a. Creará un nuevo paquete y asociará al evento InformaEstado el método paq_InformaEstado.
+        /// b. Agregará el paquete al correo, controlando las excepciones que puedan derivar de dicha acción.
+        /// c. Llamará al método ActualizarEstados.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -63,7 +87,8 @@ namespace MainCorreo
         }
 
         /// <summary>
-        /// 
+        /// contendrá sólo la siguiente línea de código:
+        /// this.MostrarInformacion<List<Paquete>>((IMostrar<List<Paquete>>) correo);
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -73,31 +98,58 @@ namespace MainCorreo
         }
 
         /// <summary>
-        /// 
+        /// contendrá sólo la siguiente línea de código:
+        /// this.MostrarInformacion<Paquete>((IMostrar<Paquete>)lstEstadoEntregado.SelectedItem);
         /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mostrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.MostrarInformacion<Paquete>((IMostrar<Paquete>)lstEstadoEntregado.SelectedItem);
         }
 
         /// <summary>
-        /// 
+        /// evaluará que el atributo elemento no sea nulo y:
+        /// a. Mostrará los datos de elemento en el rtbMostrar.
+        /// b. Utilizará el método de extensión para guardar los datos en un archivo llamado salida.txt.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="elemento"></param>
         private void MostrarInformacion<T>(IMostrar<T> elemento)
         {
+            this.rtbMostrar.Clear();
 
+            if (elemento != null)
+            {
+                if (elemento.GetType() == typeof(Correo))
+                {
+                    this.rtbMostrar.Text = elemento.MostrarDatos(elemento);
+                }
+                else if (elemento.GetType() == typeof(Paquete))
+                {
+                    this.rtbMostrar.Text = elemento.ToString();
+                }
+
+                elemento.MostrarDatos(elemento).Guardar("salida"); // válido para los dos typeof
+            }
         }
 
         /// <summary>
-        /// 
+        /// llamará al método ActualizarEstados en el ELSE
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void paq_InformaEstado(object sender, EventArgs e)
         {
+            if (this.InvokeRequired)
+            {
+                Paquete.DelegadoEstado d = new Paquete.DelegadoEstado(paq_InformaEstado);
+                this.Invoke(d, new object[] { sender, e });
+            }
+            else // llamar al método
+            {
+                ActualizarEstados();
+            }
 
         }
 
