@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase estática que se encargará de guardar los datos de un paquete 
+    /// en la base de datos generada anteriormente.
+    /// </summary>
     public static class PaqueteDAO
     {
         #region Campos
@@ -18,9 +22,23 @@ namespace Entidades
 
         #region Constructores
 
+        /// <summary>
+        /// Constructor sin parámetros que inicializa los campos estáticos
+        /// </summary>
         static PaqueteDAO()
         {
-            // a completar
+            // "Data Source=[Instancia Del Servidor]; Initial Catalog=[Nombre de la Base de Datos]: Integrated Security=True;"
+            String connectionStr = "Server = .\\SQLEXPRESS; Database = correo-sp-2017; Trusted_Connection = True;";
+
+            conexion = new SqlConnection(connectionStr);
+
+            comando = new SqlCommand();
+            comando.CommandType = System.Data.CommandType.Text;
+
+            comando.Connection = conexion;
+
+            // El campo alumno de la base de datos deberá contener el nombre del alumno que está realizando el TP:
+            //comando.Parameters.AddWithValue("@alumno", "Antonella Gualco");
         }
 
         #endregion
@@ -43,13 +61,15 @@ namespace Entidades
             {
                 try
                 {
-                    // acá va el comando sql para insertar: comando.CommandText = ...
                     conexion.Open();
+                    string comandoInsert = string.Format("INSERT INTO Paquetes (direccionEntrega, trackingID, alumno) VALUES ('{0}', '{1}', 'Antonella Gualco')",
+                                                        p.DireccionEntrega, p.TrackingID);
+                    comando.CommandText = comandoInsert;
                     comando.ExecuteNonQuery();
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    throw e; // De surgir cualquier error con la carga de datos, se deberá lanzar una excepción
                 }
                 finally
                 {
