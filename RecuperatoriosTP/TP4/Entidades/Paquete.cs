@@ -82,7 +82,7 @@ namespace Entidades
         {
             this.direccionEntrega = direccionEntrega;
             this.trackingID = trackingID;
-            // this.estado = EEstado.Ingresado; // El estado del paquete se settea en [Ingresado] por default ??
+            this.estado = EEstado.Ingresado; // El estado del paquete se settea en [Ingresado] por default ??
         }
 
         #endregion
@@ -158,8 +158,8 @@ namespace Entidades
         {
             bool retorno = false;
 
-            if (p1 != null && p2 != null
-                && p1.TrackingID == p2.TrackingID)
+            if (//p1 != null && p2 != null && --> si lo descomento falla el test de paquete repetido
+                p1.TrackingID == p2.TrackingID)
             {
                 retorno = true;
             }
