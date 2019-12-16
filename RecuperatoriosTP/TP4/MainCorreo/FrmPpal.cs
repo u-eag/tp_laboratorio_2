@@ -135,6 +135,17 @@ namespace MainCorreo
         }
 
         /// <summary>
+        /// Al cerrarse el formulario, se deberá llamar al método FinEntregas 
+        /// a fin de cerrar todos los hilos abiertos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmPpal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.correo.FinEntregas();
+        }
+
+        /// <summary>
         /// llamará al método ActualizarEstados en el ELSE
         /// </summary>
         /// <param name="sender"></param>
