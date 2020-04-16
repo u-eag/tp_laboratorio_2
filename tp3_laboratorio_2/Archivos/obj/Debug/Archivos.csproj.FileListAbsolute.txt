@@ -1,9 +1,0 @@
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\bin\Debug\Archivos.dll
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\bin\Debug\Archivos.pdb
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\bin\Debug\Excepciones.dll
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\bin\Debug\Excepciones.pdb
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\obj\Debug\Archivos.csprojAssemblyReference.cache
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\obj\Debug\Archivos.csproj.CoreCompileInputs.cache
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\obj\Debug\Archivos.csproj.CopyComplete
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\obj\Debug\Archivos.dll
-C:\Users\ADMIRAL\Documents\tp3_laboratorio_2\tp3_laboratorio_2\Archivos\obj\Debug\Archivos.pdb

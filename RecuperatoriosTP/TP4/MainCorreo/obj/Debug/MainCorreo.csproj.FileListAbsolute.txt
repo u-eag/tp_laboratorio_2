@@ -1,9 +1,0 @@
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\bin\Debug\MainCorreo.exe.config
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\bin\Debug\MainCorreo.exe
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\bin\Debug\MainCorreo.pdb
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\obj\Debug\MainCorreo.csprojAssemblyReference.cache
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\obj\Debug\MainCorreo.Properties.Resources.resources
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\obj\Debug\MainCorreo.csproj.GenerateResource.cache
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\obj\Debug\MainCorreo.csproj.CoreCompileInputs.cache
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\obj\Debug\MainCorreo.exe
-C:\Users\ADMIRAL\Documents\u-eag\tp_laboratorio_2\RecuperatoriosTP\TP4\MainCorreo\obj\Debug\MainCorreo.pdb
