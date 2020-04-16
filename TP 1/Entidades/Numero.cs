@@ -24,7 +24,7 @@ namespace Entidades
         {
             set 
             {
-                
+                this.numero = ValidarNumero(value);
             }
         }
 
@@ -42,12 +42,12 @@ namespace Entidades
 
         public Numero(double numero)
         {
-
+            this.numero = numero;
         }
 
-        public Numero(string numero)
+        public Numero(string strNumero)
         {
-
+            SetNumero = strNumero;
         }
 
         #endregion
@@ -64,7 +64,7 @@ namespace Entidades
         {
             double retorno = 0;
 
-            
+            double.TryParse(strNumero, out retorno);
 
             return retorno;
         }
@@ -88,7 +88,7 @@ namespace Entidades
         /// </summary>
         /// <param name="numero"></param>
         /// <returns></returns>
-        public string DecimalBinario(string numero)
+        public string DecimalBinario(double numero)
         {
             string retorno = "Valor inválido";
 
@@ -101,11 +101,11 @@ namespace Entidades
         /// </summary>
         /// <param name="numero"></param>
         /// <returns></returns>
-        public double DecimalBinario(double numero)
+        public string DecimalBinario(string numero)
         {
-            double retorno = 0; // "Valor inválido" ?
+            SetNumero = numero;
 
-            return retorno;
+            return DecimalBinario(this.numero);
         }
 
         #endregion
@@ -114,16 +114,12 @@ namespace Entidades
 
         public static double operator +(Numero n1, Numero n2)
         {
-            double retorno;
-
-            return retorno;
+            return n1.numero + n2.numero;
         }
 
         public static double operator -(Numero n1, Numero n2)
         {
-            double retorno;
-
-            return retorno;
+            return n1.numero - n2.numero;
         }
 
         /// <summary>
@@ -136,14 +132,17 @@ namespace Entidades
         {
             double retorno = double.MinValue;
 
+            if(n2.numero != 0)
+            {
+                retorno = n1 / n2;
+            }
+
             return retorno;
         }
 
         public static double operator *(Numero n1, Numero n2)
         {
-            double retorno;
-
-            return retorno;
+            return n1.numero * n2.numero;
         }
 
         #endregion
