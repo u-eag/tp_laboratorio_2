@@ -77,22 +77,34 @@ namespace Entidades
         /// <returns></returns>
         public string BinarioDecimal(string binario)
         {
-            string retorno = "Valor inválido";
+            binario.ToCharArray();
 
-            return retorno;
-        }
+            foreach (char letter in binario)
+            {
+                if(letter != 0 || letter != 1)
+                {
+                    return "Valor inválido";
+                } 
+            }
 
-        /// <summary>
-        /// Convertirá un número decimal a binario, en caso de ser posible. 
-        /// Caso contrario retornará "Valor inválido".
-        /// </summary>
-        /// <param name="numero"></param>
-        /// <returns></returns>
-        public string DecimalBinario(double numero)
-        {
-            string retorno = "Valor inválido";
+            binario.Reverse();
 
-            return retorno;
+            double decimalNumber = 0;
+            foreach (char number in binario)
+            {
+                double digit = 0;
+                double pow = 0;
+
+                double.TryParse(number.ToString(), out digit);
+
+                if(digit == 1)
+                {
+                    decimalNumber += Math.Pow(2, pow);
+                    pow++; 
+                }
+            }
+
+            return decimalNumber.ToString();
         }
 
         /// <summary>
@@ -103,9 +115,43 @@ namespace Entidades
         /// <returns></returns>
         public string DecimalBinario(string numero)
         {
-            SetNumero = numero;
+            if(numero == "0")
+            {
+                return "0";
+            }
+            else
+            {
+                SetNumero = numero; // valida que sea un número y lo guarda como double en this.numero
 
-            return DecimalBinario(this.numero);
+                if (this.numero == 0) // si a esta altura vale 0 es porque no funcionó el double.TryParse
+                {
+                    return "Valor inválido";
+                }
+                else // es un número decimal válido y lo puedo convertir a binario:
+                {
+                    string binario = "";
+                    while ((this.numero / 2) > 2)
+                    {
+                        string digit = (this.numero % 2).ToString();
+                        binario += digit;
+                    }
+                    binario.ToCharArray();
+                    binario.Reverse();
+
+                    return binario.ToString();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Convertirá un número decimal a binario, en caso de ser posible. 
+        /// Caso contrario retornará "Valor inválido".
+        /// </summary>
+        /// <param name="numero"></param>
+        /// <returns></returns>
+        public string DecimalBinario(double numero)
+        {
+            return DecimalBinario(numero.ToString());
         }
 
         #endregion
