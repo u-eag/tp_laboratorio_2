@@ -134,7 +134,7 @@ namespace Entidades
                     Math.Truncate(this.numero);     // le quito los decimales
 
                     string binario = "";
-                    while ((this.numero / 2) > 2)
+                    while ((this.numero / 2) >= 2)
                     {
                         string digit = (this.numero % 2).ToString();
                         binario += digit;
