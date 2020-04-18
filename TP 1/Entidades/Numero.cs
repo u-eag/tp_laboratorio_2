@@ -110,6 +110,7 @@ namespace Entidades
         /// <summary>
         /// Convertirá un número decimal a binario, en caso de ser posible. 
         /// Caso contrario retornará "Valor inválido".
+        /// Trabajará con enteros positivos, quedándose para esto con el valor absoluto y entero del numero recibido.
         /// </summary>
         /// <param name="numero"></param>
         /// <returns></returns>
@@ -127,8 +128,11 @@ namespace Entidades
                 {
                     return "Valor inválido";
                 }
-                else // es un número decimal válido y lo puedo convertir a binario:
+                else // es un número decimal válido y puedo convertir su valor absoluto a binario
                 {
+                    Math.Abs(this.numero);          // le quito el signo
+                    Math.Truncate(this.numero);     // le quito los decimales
+
                     string binario = "";
                     while ((this.numero / 2) > 2)
                     {
@@ -146,6 +150,7 @@ namespace Entidades
         /// <summary>
         /// Convertirá un número decimal a binario, en caso de ser posible. 
         /// Caso contrario retornará "Valor inválido".
+        /// Trabajará con enteros positivos, quedándose para esto con el valor absoluto y entero del numero recibido.
         /// </summary>
         /// <param name="numero"></param>
         /// <returns></returns>
