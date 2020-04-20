@@ -1,0 +1,14 @@
+C:\Users\ADMIRAL\Documents\tp1_laboratorio_2\Entidades\Entidades\bin\Debug\Entidades.exe.config
+C:\Users\ADMIRAL\Documents\tp1_laboratorio_2\Entidades\Entidades\bin\Debug\Entidades.exe
+C:\Users\ADMIRAL\Documents\tp1_laboratorio_2\Entidades\Entidades\bin\Debug\Entidades.pdb
+C:\Users\ADMIRAL\Documents\tp1_laboratorio_2\Entidades\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\ADMIRAL\Documents\tp1_laboratorio_2\Entidades\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\ADMIRAL\Documents\tp1_laboratorio_2\Entidades\Entidades\obj\Debug\Entidades.exe
+C:\Users\ADMIRAL\Documents\tp1_laboratorio_2\Entidades\Entidades\obj\Debug\Entidades.pdb
+C:\Users\PU741FR\Downloads\tp_laboratorio_2\tp1_laboratorio_2\Entidades\Entidades\bin\Debug\Entidades.exe.config
+C:\Users\PU741FR\Downloads\tp_laboratorio_2\tp1_laboratorio_2\Entidades\Entidades\bin\Debug\Entidades.exe
+C:\Users\PU741FR\Downloads\tp_laboratorio_2\tp1_laboratorio_2\Entidades\Entidades\bin\Debug\Entidades.pdb
+C:\Users\PU741FR\Downloads\tp_laboratorio_2\tp1_laboratorio_2\Entidades\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\PU741FR\Downloads\tp_laboratorio_2\tp1_laboratorio_2\Entidades\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\PU741FR\Downloads\tp_laboratorio_2\tp1_laboratorio_2\Entidades\Entidades\obj\Debug\Entidades.exe
+C:\Users\PU741FR\Downloads\tp_laboratorio_2\tp1_laboratorio_2\Entidades\Entidades\obj\Debug\Entidades.pdb
