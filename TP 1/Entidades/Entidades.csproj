@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Calculadora.cs" />
     <Compile Include="Numero.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

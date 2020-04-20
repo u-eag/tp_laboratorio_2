@@ -12,6 +12,11 @@ namespace MiCalculadora
             Limpiar();
         }
 
+        private void FormCalculadora_Load(object sender, EventArgs e)
+        {
+
+        }
+
         #region Buttons
         /// <summary>
         /// Cierra el formulario.
