@@ -9,14 +9,10 @@ namespace MiCalculadora
         public FormCalculadora()
         {
             InitializeComponent();
-        }
-
-        #region Buttons
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
             Limpiar();
         }
 
+        #region Buttons
         /// <summary>
         /// Cierra el formulario.
         /// </summary>
@@ -27,6 +23,13 @@ namespace MiCalculadora
             this.Close();
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+            btnConvertirABinario.Enabled = false;
+            btnConvertirADecimal.Enabled = false;
+        }
+
         /// <summary>
         /// Reflejará el resultado del método Operar en el Label txtResultado
         /// </summary>
@@ -34,7 +37,10 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnOperar_Click(object sender, EventArgs e)
         {
-
+            lblResultado.Text = (Operar(txtNumero1.Text, txtNumero2.Text, cmbOperador.Text)).ToString();
+            btnConvertirADecimal.Enabled = false;
+            btnConvertirABinario.Enabled = true;
+            btnLimpiar.Enabled = true;
         }
 
         /// <summary>
@@ -44,7 +50,11 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
+            Numero aux = new Numero(lblResultado.Text);
 
+            lblResultado.Text = aux.DecimalBinario(lblResultado.Text);
+            btnConvertirADecimal.Enabled = true;
+            btnConvertirABinario.Enabled = false;
         }
 
         /// <summary>
@@ -54,7 +64,11 @@ namespace MiCalculadora
         /// <param name="e"></param>
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
         {
+            Numero aux = new Numero(lblResultado.Text);
 
+            lblResultado.Text = aux.BinarioDecimal(lblResultado.Text);
+            btnConvertirADecimal.Enabled = false;
+            btnConvertirABinario.Enabled = true;
         }
         #endregion
 
@@ -65,7 +79,10 @@ namespace MiCalculadora
         /// </summary>
         private void Limpiar()
         {
-
+            this.txtNumero1.Text = "";
+            this.txtNumero2.Text = "";
+            this.cmbOperador.Text = "";
+            this.lblResultado.Text = "";
         }
 
         /// <summary>
@@ -79,7 +96,16 @@ namespace MiCalculadora
         /// <returns></returns>
         private static double Operar(string numero1, string numero2, string operador)
         {
-            return 0;
+            double retorno = 0;
+            Numero num1 = new Numero(numero1);
+            Numero num2 = new Numero(numero2);
+
+            if (num1 != null && num2 != null)
+            {
+                retorno = Calculadora.Operar(num1, num2, operador);
+            }
+
+            return retorno;
         }
         #endregion
     }

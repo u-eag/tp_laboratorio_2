@@ -45,9 +45,9 @@
             this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultado.Location = new System.Drawing.Point(396, 24);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(95, 36);
+            this.lblResultado.Size = new System.Drawing.Size(0, 36);
             this.lblResultado.TabIndex = 0;
-            this.lblResultado.Text = "label1";
+            this.lblResultado.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txtNumero1
             // 
@@ -71,6 +71,11 @@
             // 
             this.cmbOperador.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOperador.FormattingEnabled = true;
+            this.cmbOperador.Items.AddRange(new object[] {
+            "+",
+            "-",
+            "/",
+            "*"});
             this.cmbOperador.Location = new System.Drawing.Point(214, 80);
             this.cmbOperador.Name = "cmbOperador";
             this.cmbOperador.Size = new System.Drawing.Size(92, 44);
